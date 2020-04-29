@@ -87,6 +87,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.3"
     },
+    "nikic/php-parser": {
+        "version": "v4.4.0"
+    },
     "ocramius/package-versions": {
         "version": "1.8.0"
     },
@@ -212,6 +215,15 @@
     },
     "symfony/intl": {
         "version": "v5.0.8"
+    },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/mime": {
         "version": "v5.0.8"
