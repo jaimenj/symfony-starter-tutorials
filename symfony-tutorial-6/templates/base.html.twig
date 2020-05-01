@@ -2,11 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>
+            {% block title %}¡Hola!{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+                #header-div {
+                    background-color: #aaa;
+                }
+            </style>
+        {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body style="">
+        {# ESTO INCLUYE LA CABECERA #}
+        {#{ include('menuheader.html.twig') }#}
+        {{ render(url('renderHeader')) }}
+        <div style="border: 1px solid black; padding: 5px; margin: 5px;">
+            {# ESTO INCLUYE EL CONTENIDO DE LA PÁGINA EN ESTA CAJA #}
+            {% block body %}{% endblock %}
+        </div>
+        {# ESTO INCLUYE EL PIE DE PÁGINA #}
+        {{ include('menufooter.html.twig') }}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,21 @@
+{# LA HERENCIA DE PLANTILLAS SE HACE CON EXTEND #}
+{% extends 'base.html.twig' %}
+{% block title %}¡Hola mundo!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #808080;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block body %}
+    <h2>Página principal</h2>
+    <p>Contenido del body.</p>
+    <p>Esto es un fichero de estilo que se puede abrir haciendo click aquí:
+        <a href="{{ asset('estilo.css') }}">estilo.css</a>
+    </p>
+    <p>Si quisiéramos usar una ruta absoluta podemos poner:
+        {{ absolute_url(asset('estilo.css')) }}</p>
+{% endblock %}

@@ -1,0 +1,16 @@
+{# LA HERENCIA DE PLANTILLAS SE HACE CON EXTEND #}
+{% extends 'base.html.twig' %}
+{% block title %}¡Esto es una página 3!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-color: #883;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+{% block body %}
+    <h2>Página de pruebas 3</h2>
+    <p>Contenido del body.</p>
+{% endblock %}
