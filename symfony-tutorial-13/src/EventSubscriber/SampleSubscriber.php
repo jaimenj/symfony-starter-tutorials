@@ -11,13 +11,13 @@ class SampleSubscriber implements EventSubscriberInterface
     public function onSampleEvent($event)
     {
         // ...
-        touch(__DIR__.'/test.file');
+        touch(__DIR__.'/test.sample.file1');
     }
 
     public function onKernelResponse($event)
     {
         // ...
-        touch(__DIR__.'/test.file2');
+        touch(__DIR__.'/test.sample.file2');
     }
 
     public static function getSubscribedEvents()
