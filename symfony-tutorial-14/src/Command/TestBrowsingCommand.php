@@ -46,5 +46,7 @@ class TestBrowsingCommand extends Command
         }
 
         $io->success('¡Este comando ha terminado con éxito!');
+
+        return 0;
     }
 }
