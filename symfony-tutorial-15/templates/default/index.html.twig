@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}JnjSite.com ejemplo de página corporativa{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div style="background-color: #808080; border-radius: 20px; box-shadow: 5px 5px 5px 0 black; padding: 20px;">
+        <h1>Esto es una página corporativa</h1>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/usuario/projects-src/symfony-starter-tutorials/symfony-tutorial-15/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/usuario/projects-src/symfony-starter-tutorials/symfony-tutorial-15/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac aliquam lorem. Aliquam quis dui eu elit suscipit venenatis sollicitudin sed est. Proin eu tincidunt justo. Aenean tincidunt nec ex ac auctor. Donec faucibus mauris orci, vitae
+        efficitur nibh fringilla hendrerit. Cras gravida eros id diam varius pellentesque. Nulla dapibus dapibus purus blandit blandit. Praesent sodales nulla a felis tincidunt placerat. In in sodales diam. Curabitur blandit, leo ut bibendum rutrum, magna
+        justo malesuada tortor, at mollis dui urna sit amet odio. Sed euismod, ante non blandit vestibulum, magna nibh iaculis odio, nec luctus nisl odio non nunc. Duis erat libero, accumsan sed justo in, varius egestas ex. Vestibulum rutrum nulla tincidunt
+        risus feugiat hendrerit. Quisque sed quam placerat elit eleifend varius. Pellentesque quam nulla, faucibus eget mollis id, elementum ultrices massa.</p>
+
+    <p>Donec lobortis nunc sit amet mattis tincidunt. Praesent dapibus augue at nulla sagittis, nec ultricies nibh faucibus. Fusce a luctus dui. Praesent venenatis, neque sed condimentum gravida, sem mauris mattis eros, eget malesuada ex ipsum quis erat.
+        Etiam mauris odio, malesuada quis convallis at, molestie sit amet enim. In dictum, ipsum id viverra tempus, lorem felis rhoncus lorem, sit amet elementum dolor dui et orci. Phasellus suscipit purus ut ex efficitur consectetur sit amet non magna.
+        Praesent tincidunt, est at finibus auctor, nisl nisi pulvinar diam, ut rhoncus lorem nulla iaculis eros.</p>
+
+    <div style="background-color: #aa5; border-radius: 20px; box-shadow: 5px 5px 5px 0 black; padding: 20px; margin: 0px 100px;">
+        <h2>Formulario de contacto</h2>
+        {{ form(contactForm) }}
+    </div>
+
 {% endblock %}
