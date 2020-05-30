@@ -20,6 +20,10 @@ class DefaultController extends AbstractController
         $session->set('latitude', 0.123);
         $session->set('longitude', 0.123);
 
+        $this->addFlash('danger', 'ERROR: No podemos modificar la contraseña porque no coinciden.');
+        $this->addFlash('success', 'Datos guardados.');
+        $this->addFlash('warning', 'Ha ocurrido algo alarmante.');
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
