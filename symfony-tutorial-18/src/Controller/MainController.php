@@ -18,7 +18,7 @@ class MainController extends AbstractController
         $processes = array();
         $output = '';
         $counter = 0;
-        for ($i = 0; $i < 3; ++$i) {
+        for ($i = 0; $i < 7; ++$i) {
             $process = new Process(
                 ['stress','--cpu', '1', '--timeout', '30']
             );
