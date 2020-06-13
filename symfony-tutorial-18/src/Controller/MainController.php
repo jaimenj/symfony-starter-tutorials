@@ -14,25 +14,24 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        $process = new Process(
-            ['/bin/ls', '-lah', '../'],
-            null,
-            ['ENV_VAR_NAME' => 'valueOfEnvironmentVariable']
-        );
-
-        /*$process->run();
-        $process->disableOutput();
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }*/
-
-        try {
-            $process->mustRun();
-
-            $output = $process->getOutput();
-            $output = str_replace(PHP_EOL, '<br>', $output);
-        } catch (ProcessFailedException $exception) {
-            $output = $exception->getMessage();
+        // Paralell processing
+        $processes = array();
+        $output = '';
+        $counter = 0;
+        for ($i = 0; $i < 40; ++$i) {
+            $process = new Process(
+                ['echo', $counter]
+            );
+            $counter++;
+            $process->start();
+            $processes[] = $process;
+        }
+        sleep(5);
+        $timeout = 3;
+        $sigint = 0;
+        foreach ($processes as $process) {
+            $process->stop($timeout, $sigint);
+            $output .= 'Paralell process done! output: '.$process->getOutput().'<br>';
         }
 
         return $this->render('main/index.html.twig', [
