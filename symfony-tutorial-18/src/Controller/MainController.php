@@ -18,20 +18,15 @@ class MainController extends AbstractController
         $processes = array();
         $output = '';
         $counter = 0;
-        for ($i = 0; $i < 40; ++$i) {
+        for ($i = 0; $i < 3; ++$i) {
             $process = new Process(
-                ['echo', $counter]
+                ['stress','--cpu', '1', '--timeout', '30']
             );
             $counter++;
             $process->start();
             $processes[] = $process;
-        }
-        sleep(5);
-        $timeout = 3;
-        $sigint = 0;
-        foreach ($processes as $process) {
-            $process->stop($timeout, $sigint);
-            $output .= 'Paralell process done! output: '.$process->getOutput().'<br>';
+
+            $output .= 'Lanzado el proceso '.$counter.'<br>';
         }
 
         return $this->render('main/index.html.twig', [
