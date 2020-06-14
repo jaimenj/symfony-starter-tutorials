@@ -26,4 +26,22 @@ class MyDefaultController extends AbstractController
             'translated' => $translated,
         ]);
     }
+
+    /**
+     * @Route("/{urlKey}", name="page_show_content")
+     */
+    public function showPageContent(Request $request, $urlKey) {
+        $locale = $request->getLocale();
+        $entityManager = $this->getDoctrine()->getManager();
+        $page = $entityManager->getRepository('App\Entity\Page')->findOneBy([
+            'urlKey' => $urlKey,
+            'locale' => $locale,
+        ]);
+
+        var_dump($page);
+
+        return $this->render('page/showContent.html.twig', [
+            'page' => $page,
+        ]);
+    }
 }

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/{_locale}/page")
+ * @Route("/admin/page", priority="1")
  */
 class PageController extends AbstractController
 {
