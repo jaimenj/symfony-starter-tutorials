@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MyDefaultController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello! ✅</h1>
+
+    <ul>
+        <li>Your locale is <code>{{ locale }}</code></li>
+        <li>Your translated variable is <code>{{ translated }}</code></li>
+        <li>A text translated into the Twig template is <code>{% trans %}Texto a traducir{% endtrans %}</code></li>
+    </ul>
+</div>
+{% endblock %}
