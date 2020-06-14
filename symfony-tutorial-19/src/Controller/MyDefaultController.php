@@ -16,7 +16,7 @@ class MyDefaultController extends AbstractController
     {
         $locale = $request->getLocale();
 
-        $translated = $translator->trans('Texto a traducir');
+        $translated = $translator->trans('Text to translate');
 
         return $this->render('my_default/index.html.twig', [
             'locale' => $locale,
