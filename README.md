@@ -8,7 +8,9 @@ Para probar los proyectos hay que tener instalado:
 * Symfony-CLI
 
 # Para arrancar cada proyecto en local
-Hay que entrar en el directorio y ejecutar
-    composer install
-    symfony server:start
-..si todo ha ido bien, ir a http://localhost:8000/
+Hay que entrar en el directorio y ejecutar:
+```
+composer install
+symfony server:start
+```
+..y si todo ha ido bien, ir a http://localhost:8000/
