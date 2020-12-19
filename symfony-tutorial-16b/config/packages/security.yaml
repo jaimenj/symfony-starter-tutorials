@@ -1,0 +1,72 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            provider: app_user_provider
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+            
+            form_login:
+                # submit the login form here
+                check_path:                     login
+                # the user is redirected here when they need to log in
+                login_path:                     login
+                # if true, forward the user to the login form instead of redirecting
+                use_forward:                    false
+                # login success redirecting options (read further below)
+                always_use_default_target_path: true
+                default_target_path:            protected
+                target_path_parameter:          _target_path
+                use_referer:                    false
+                # login failure redirecting options (read further below)
+                failure_path:                   login
+                #failure_forward:               false
+                #failure_path_parameter:        _failure_path
+                #failure_handler:               some.service.id
+                #success_handler:               some.service.id
+
+                # field names for the username and password fields
+                username_parameter:             _username
+                password_parameter:             _password
+
+                # csrf token options
+                #csrf_parameter:                _csrf_token
+                #csrf_token_id:                 authenticate
+                #csrf_token_generator:          my.csrf_token_generator.id
+                csrf_token_generator:           security.csrf.token_manager
+
+                # by default, the login form *must* be a POST, not a GET
+                post_only:                      true
+                remember_me:                    true
+
+                # by default, a session must exist before submitting an authentication request
+                # if false, then Request::hasPreviousSession is not called during authentication
+                require_previous_session:       true
+            logout:
+                path:                           logout
+                target:                         default
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/protected/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/protected, roles: ROLE_USER }

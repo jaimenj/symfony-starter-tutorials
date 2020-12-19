@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        {% if error %}
+            <div class="alert alert-primary">{{ error.message }}</div>
+        {% endif %}
+
+        <div class="container p-3 text-center rounded">
+            <i class="fas fa-key" style="font-size: 1500%; margin-top: 50px;"></i>
+
+            <form action="{{ path('login') }}" method="post" role="form" class="form mt-5">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="_password" class="form-control"/>
+                </div>
+
+                <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                <label for="remember_me">Recuérdame</label>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                {#
+                    If you want to control the URL the user
+                    is redirected to on success (more details below)
+                    <input type="hidden" name="_target_path" value="/account" />
+                    #}
+
+                <button type="submit" class="btn btn-primary form-control">Entrar</button>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    </body>
+</html>
