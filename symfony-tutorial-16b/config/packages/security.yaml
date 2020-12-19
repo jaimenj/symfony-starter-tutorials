@@ -62,11 +62,12 @@ security:
                 require_previous_session:       true
             logout:
                 path:                           logout
-                target:                         default
+                target:                         login
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/protected/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/protected/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/protected, roles: ROLE_USER }

@@ -111,14 +111,8 @@ class User implements UserInterface
         return $rolesArray;
     }
 
-    public function getRolesIds() {
-        $rolesIds = [];
-
-        foreach ($this->roles as $role) {
-            $rolesIds[] = $role->getId();
-        }
-
-        return $rolesIds;
+    public function getRolesObjects() {
+        return $this->roles;
     }
 
     public function addRole(Role $role): self

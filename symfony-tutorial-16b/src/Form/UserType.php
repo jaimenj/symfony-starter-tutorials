@@ -29,6 +29,10 @@ class UserType extends AbstractType
         foreach ($roles as $rol) {
             $rolesChoices[$rol->__toString()] = $rol->getId();
         }
+        $rolesIds = [];
+        foreach ($entity->getRolesObjects() as $role) {
+            $rolesIds[] = $role->getId();
+        }
 
         $builder
             ->add('email')
@@ -37,7 +41,7 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'choices' => $rolesChoices,
-                'data' => $entity->getRolesIds(),
+                'data' => $rolesIds,
             ])
             ->add('password', null, ['data' => ''])
         ;
