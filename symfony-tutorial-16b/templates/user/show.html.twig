@@ -17,7 +17,11 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {{ role }}<br>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Password</th>
