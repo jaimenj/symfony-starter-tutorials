@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Role;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -36,9 +37,22 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Update password..
             $entityManager = $this->getDoctrine()->getManager();
             $passwordEncoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($passwordEncoded);
+
+            // Update roles..
+            $arrayRoles = $form['roles_in_form']->getData();
+            $roles = $entityManager->getRepository(Role::class)->findAll();
+            foreach ($roles as $role) {
+                if (in_array($role->getId(), $arrayRoles)) {
+                    $user->addRole($role);
+                } else {
+                    $user->removeRole($role);
+                }
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -64,13 +78,30 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            // Update password..
+            $entityManager = $this->getDoctrine()->getManager();
+            $passwordEncoded = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($passwordEncoded);
+
+            // Update roles..
+            $arrayRoles = $form['roles_in_form']->getData();
+            $roles = $entityManager->getRepository(Role::class)->findAll();
+            foreach ($roles as $role) {
+                if (in_array($role->getId(), $arrayRoles)) {
+                    $user->addRole($role);
+                } else {
+                    $user->removeRole($role);
+                }
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             return $this->redirectToRoute('user_index');
         }

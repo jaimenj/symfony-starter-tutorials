@@ -100,12 +100,25 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection|Role[]
-     */
-    public function getRoles(): Collection
+    public function getRoles()
     {
-        return $this->roles;
+        $rolesArray = [];
+
+        foreach ($this->roles as $role) {
+            $rolesArray[] = $role->getCode();
+        }
+
+        return $rolesArray;
+    }
+
+    public function getRolesIds() {
+        $rolesIds = [];
+
+        foreach ($this->roles as $role) {
+            $rolesIds[] = $role->getId();
+        }
+
+        return $rolesIds;
     }
 
     public function addRole(Role $role): self
