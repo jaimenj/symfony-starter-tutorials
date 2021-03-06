@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class StaticController extends Controller
+class StaticController extends AbstractController
 {
     /**
      * @Route("/", name="home")
@@ -13,7 +14,9 @@ class StaticController extends Controller
      */
     public function home()
     {
-        return $this->render('static/index.html.twig', ['controller_name' => 'StaticController/home']);
+        return $this->render('static/index.html.twig', [
+            'controller_name' => 'StaticController/home',
+        ]);
     }
 
     /**
@@ -21,7 +24,9 @@ class StaticController extends Controller
      */
     public function staticPage($pageUrl)
     {
-        return $this->render('static/'.$pageUrl.'.html.twig', ['controller_name' => 'StaticController/staticPage']);
+        return $this->render('static/'.$pageUrl.'.html.twig', [
+            'controller_name' => 'StaticController/staticPage',
+        ]);
     }
 
     /**
@@ -29,6 +34,8 @@ class StaticController extends Controller
      */
     public function staticPageOther($pageUrl)
     {
-        return $this->render('static/'.$pageUrl.'.html.twig', ['controller_name' => 'StaticController/staticPageOther']);
+        return $this->render('static/'.$pageUrl.'.html.twig', [
+            'controller_name' => 'StaticController/staticPageOther',
+        ]);
     }
 }
